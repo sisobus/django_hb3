@@ -1,0 +1,3 @@
+venv/*
+hb3/*.sqlite3
+hb3/hb3/__pycache__/*
