@@ -1,0 +1,11 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+
+{% for user_item in user_list %}
+	{{ user_item.id }} {{ user_item.username }} {{ user_item.email }} 
+	<a href="{{ user_item.get_absolute_url }}">{{ user_item.username }}</a>({{user_item.username}})
+	<br>
+{% endfor %}
+
+{% endblock %}

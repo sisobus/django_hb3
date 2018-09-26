@@ -4,6 +4,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.urls import reverse_lazy
 from django.views import generic
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 
 # Create your views here.
 def index(request):
@@ -22,6 +23,20 @@ def index(request):
 @login_required
 def secret_page(request):
 	return HttpResponse("secret page")
+
+@login_required
+def user_information(request):
+	return render(request, 'registration/user_information.html')
+
+class UserList(generic.ListView):
+	model = User 
+	context_object_name = 'user_list'
+	queryset = User.objects.filter(username__icontains='')[:5]
+	template_name = 'registration/user_list.html'
+
+class UserItem(generic.DetailView):
+	model = User 
+	template_name = 'registration/user_detail.html'
 
 class SignUp(generic.CreateView):
     form_class = UserCreationForm
