@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from django.contrib.auth.forms import UserCreationForm
 from django.urls import reverse_lazy
 from django.views import generic
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def index(request):
@@ -16,6 +17,11 @@ def index(request):
 		 accounts/ reset/&lt;uidb64&gt;/&lt;token&gt;/ [name='password_reset_confirm']<br>\
 		 accounts/ reset/done/ [name='password_reset_complete']"
 		)
+
+# https://medium.com/@himanshuxd/how-to-create-registration-login-webapp-with-django-2-0-fd33dc7a6c67
+@login_required
+def secret_page(request):
+	return HttpResponse("secret page")
 
 class SignUp(generic.CreateView):
     form_class = UserCreationForm
