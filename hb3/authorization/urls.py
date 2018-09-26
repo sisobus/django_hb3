@@ -11,5 +11,3 @@ urlpatterns = [
     path('secret/', views.secret_page, name='secret'),
     path('this/', views.user_information, name='this_user_information'),
 ]
-
-
